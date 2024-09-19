@@ -8,6 +8,11 @@ package jack.collections;
  */
 public class MissingKeyException extends RuntimeException {
 
+    /**
+     * Class constructor.
+     *
+     * @param message Error message.
+     */
     public MissingKeyException(String message) {
         super(message);
     }

@@ -15,7 +15,9 @@ public class Pair<V1, V2> {
      */
     public V1 first;
 
-    /* Value. */
+    /**
+     * Value.
+     */
     public V2 second;
 
     /**

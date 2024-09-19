@@ -1,7 +1,7 @@
 package jack.collections;
 
 /**
- * This interface defines a readonly contract for querying data models.<p>
+ * <p>This interface defines a readonly contract for querying data models.
  * </p>
  * An actual implementation may be a mutable model; however, this interface represents a readonly approach (query only,
  * with no ability to change data).

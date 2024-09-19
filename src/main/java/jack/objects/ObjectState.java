@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 /**
- * Represents a state of object (a collection of values that includes all relevant fields).<p>
+ * <p>Represents a state of object (a collection of values that includes all relevant fields).
  * </p>
  * An implementation may choose to provide only a subset of the object's fields' states.
  *

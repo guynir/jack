@@ -164,7 +164,7 @@ public class SecureRandomIdGenerator implements StringIdGenerator {
      * Set the length of the generated identifier.
      *
      * @param length Length. Must be greater than 1.
-     * @throws IllegalArgumentException If <i>length <= 1</i>
+     * @throws IllegalArgumentException If <i>length &lt;= 1</i>
      */
     public void setLength(int length) {
         Asserts.state(length > 1, "Length must be greater than 1.");

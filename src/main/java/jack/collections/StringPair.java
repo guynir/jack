@@ -8,11 +8,20 @@ package jack.collections;
  */
 public class StringPair extends Pair<String, String> {
 
+    /**
+     * Class constructor. Construct a new pair with both values as {@code null}.
+     */
     public StringPair() {
         super();
     }
 
-    public StringPair(String key, String value) {
-        super(key, value);
+    /**
+     * Class constructor.
+     *
+     * @param first  Initial first value.
+     * @param second Initial second value.
+     */
+    public StringPair(String first, String second) {
+        super(first, second);
     }
 }

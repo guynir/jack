@@ -3,7 +3,7 @@ package jack.idgen;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * An identifier generator which runs sequentially starting at a given number.<p>
+ * <p>An identifier generator which runs sequentially starting at a given number.
  * </p>
  * The implementation is thread-safe and can be called concurrently.
  *
