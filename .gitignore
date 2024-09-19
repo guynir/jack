@@ -24,4 +24,5 @@ replay_pid*
 build
 
 # IntelliJ IDEA
+.idea
 .idea/**
