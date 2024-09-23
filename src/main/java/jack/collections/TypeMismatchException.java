@@ -29,7 +29,7 @@ public class TypeMismatchException extends RuntimeException {
     }
 
     /**
-     * Construct a new exception instance with predefined message describing the desired (target) type and the actual
+     * Construct a new exception instance with a predefined message describing the desired (target) type and the actual
      * type found in the internal model.
      *
      * @param requestedType Desired type (the type the caller requested).
@@ -43,7 +43,7 @@ public class TypeMismatchException extends RuntimeException {
     }
 
     /**
-     * Construct a new exception instance with predefined message describing the desired (target) type and the actual
+     * Construct a new exception instance with a predefined message describing the desired (target) type and the actual
      * type found in the internal model.
      *
      * @param requestedType Desired type (the type the caller requested).

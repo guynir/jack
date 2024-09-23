@@ -34,6 +34,18 @@ public class Asserts {
         if (!state) {
             throw new IllegalArgumentException(message);
         }
+    }
 
+    /**
+     * Assert that a given string is neither {@code null} nor {@link String#isEmpty()} (zero-length string).
+     *
+     * @param str     String to test.
+     * @param message Error message.
+     * @throws IllegalReceiveException If either <i>str</i> is {@code null} or empty.
+     */
+    public static void notEmpty(String str, String message) throws IllegalReceiveException {
+        if (str == null || str.isBlank()) {
+            throw new IllegalArgumentException(message);
+        }
     }
 }

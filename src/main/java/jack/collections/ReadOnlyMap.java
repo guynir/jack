@@ -24,12 +24,12 @@ public interface ReadOnlyMap<K> {
     /**
      * Fetch an object denoted by a <i>key</i>.
      *
-     * @param key Key of object.
+     * @param key Key of the object.
      * @param <T> Generic type of object.
      * @return Object associated with <i>key</i>.
      * @throws MissingKeyException      If <i>key</i> does not exist.
      * @throws IllegalArgumentException If <i>key</i> is {@code null}.
-     * @throws TypeMismatchException    If the object exist but could not be converted to type <i>T</i>.
+     * @throws TypeMismatchException    If the object exists but could not be converted to type <i>T</i>.
      */
     <T> T get(K key) throws MissingKeyException, IllegalArgumentException, TypeMismatchException;
 
@@ -39,7 +39,7 @@ public interface ReadOnlyMap<K> {
      * @param key          Key to search by.
      * @param defaultValue Default value to fall back to.
      * @param <T>          Generic type of object.
-     * @return Either object associated with key or <i>defaultValue</i> if key does not exist.
+     * @return Either object associated with a key or <i>defaultValue</i> if key does not exist.
      * @throws IllegalArgumentException If <i>key</i> is {@code null}.
      */
     <T> T get(K key, T defaultValue) throws IllegalArgumentException;
