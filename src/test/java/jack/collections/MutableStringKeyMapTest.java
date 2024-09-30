@@ -15,11 +15,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  */
 public class MutableStringKeyMapTest {
 
-    /**
-     * Instance to test.
-     */
-    private MutableStringKeyMap map;
-
     //
     // Sample values for testing.
     //
@@ -30,6 +25,10 @@ public class MutableStringKeyMapTest {
     private static final double DOUBLE_VALUE = 4.2d;
     private static final boolean BOOLEAN_VALUE = true;
     private static final String STRING_VALUE = "string";
+    /**
+     * Instance to test.
+     */
+    private MutableStringKeyMap map;
 
     /**
      * Test fixture -- creates a new map before each test.

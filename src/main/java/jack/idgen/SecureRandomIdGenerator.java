@@ -30,30 +30,26 @@ import java.util.Set;
 public class SecureRandomIdGenerator implements StringIdGenerator {
 
     /**
-     * Implementation secure-random for generating identifiers.
-     */
-    private final SecureRandom secureRandom = createSecureRandom();
-
-    /**
-     * Length of generated identifier.
-     */
-    private int length;
-
-    /**
-     * List of symbols to use for generating string-based identifier.
-     */
-    private char[] symbols;
-
-    /**
      * Default length of generated identifier.
      */
     public static final int DEFAULT_IDENTIFIER_LENGTH = 30;
-
     /**
      * Default set of symbols to use for generation.
      */
     @SuppressWarnings("SpellCheckingInspection")
     public static final String DEFAULT_SYMBOL_SET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    /**
+     * Implementation secure-random for generating identifiers.
+     */
+    private final SecureRandom secureRandom = createSecureRandom();
+    /**
+     * Length of generated identifier.
+     */
+    private int length;
+    /**
+     * List of symbols to use for generating string-based identifier.
+     */
+    private char[] symbols;
 
     /**
      * Class constructor.
@@ -133,6 +129,28 @@ public class SecureRandomIdGenerator implements StringIdGenerator {
         this.symbols = symbols;
     }
 
+    /**
+     * @return New secure random instantiated with random seed.
+     */
+    private static SecureRandom createSecureRandom() {
+        BigInteger value = BigInteger.valueOf(System.currentTimeMillis());
+        return new SecureRandom(value.toByteArray());
+    }
+
+    /**
+     * Check if a given array of characters contains duplicates.
+     *
+     * @param chars Characters to examine.
+     * @return {@code true} if array contain duplicates, {@code false} if all characters are unique.
+     */
+    private static boolean hasDuplicates(char[] chars) {
+        Set<Character> set = new HashSet<>(chars.length);
+        for (char c : chars) {
+            set.add(c);
+        }
+        return chars.length != set.size();
+    }
+
     @Override
     public String generate() {
         // Generate secure random.
@@ -181,28 +199,6 @@ public class SecureRandomIdGenerator implements StringIdGenerator {
         Asserts.notNull(symbols, "Symbols list cannot be null.");
         Asserts.state(symbols.length > 1, "Symbols list must contain at least 2 symbols.");
         this.symbols = symbols;
-    }
-
-    /**
-     * @return New secure random instantiated with random seed.
-     */
-    private static SecureRandom createSecureRandom() {
-        BigInteger value = BigInteger.valueOf(System.currentTimeMillis());
-        return new SecureRandom(value.toByteArray());
-    }
-
-    /**
-     * Check if a given array of characters contains duplicates.
-     *
-     * @param chars Characters to examine.
-     * @return {@code true} if array contain duplicates, {@code false} if all characters are unique.
-     */
-    private static boolean hasDuplicates(char[] chars) {
-        Set<Character> set = new HashSet<>(chars.length);
-        for (char c : chars) {
-            set.add(c);
-        }
-        return chars.length != set.size();
     }
 
 }

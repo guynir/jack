@@ -17,14 +17,13 @@ import java.util.stream.Collectors;
 public class TreeNode<K, D> {
 
     /**
-     * Data associated the current node.
-     */
-    private D data;
-
-    /**
      * Children of this node.
      */
     private final Map<K, TreeNode<K, D>> children = new LinkedHashMap<>();
+    /**
+     * Data associated the current node.
+     */
+    private D data;
 
     /**
      * Class constructor.
