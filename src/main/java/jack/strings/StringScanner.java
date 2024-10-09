@@ -29,26 +29,23 @@ import jack.utils.Asserts;
 public class StringScanner {
 
     /**
+     * Default escape character this implementation uses (unless alternative one is specified).
+     */
+    public static final char DEFAULT_ESCAPE_CHARACTER = '\\';
+    /**
      * The string to scan.
      */
     private final String str;
-
     /**
      * Character to use as an <i>escape character</i> prefix.
      */
     private final char escapeCharacter;
-
     /**
      * Current offset of cursor (where to begin searching from).<p>
      * The search always begins one character after <i>offset</i>.<p>
-     * Initial value is '-1' (which indicates that scan has no began yet).
+     * The Initial value is '-1' (which indicates that scan has no began yet).
      */
     private int offset = -1;
-
-    /**
-     * Default escape character this implementation uses (unless alternative one is specified).
-     */
-    public static final char DEFAULT_ESCAPE_CHARACTER = '\\';
 
     /**
      * Class constructor. Use {@link #DEFAULT_ESCAPE_CHARACTER default escaping character}.
@@ -126,35 +123,6 @@ public class StringScanner {
     }
 
     /**
-     * Find the next <i>substr</i> is our string.
-     *
-     * @param substr Substring to search for.
-     * @return Offset of substring (0-based offset) or -1 if substring not found.
-     */
-    public int find(String substr) {
-        if (consumed()) {
-            return -1;
-        }
-
-        int index = findSubstring(str, substr, offset + 1, escapeCharacter);
-
-        // If the substring is not found -- set the offset to the end of the string and return -1
-        // to indicate the substring is not found.
-        offset = index == -1 ? str.length() : index;
-
-        return index;
-    }
-
-    /**
-     * Provide indication if this finder has been fully consumed. See the class description for more details.
-     *
-     * @return {@code true} if scanner is consumed, {@code false} if not.
-     */
-    public boolean consumed() {
-        return offset == str.length();
-    }
-
-    /**
      * <p>Search for a <i>substr</i> occurrence within a given string -- <i>str</i>. The search starts
      * at a given <i>offset</i>.
      * </p>
@@ -173,8 +141,9 @@ public class StringScanner {
      * @return Location of first occurrence (starting at <i>offset</i>) or -1 if no such substring is found.
      */
     private static int search(String str, String substr, int offset, char escapeCharacter) {
+        int result = -1;
         while (offset + substr.length() - 1 < str.length()) {
-            offset = str.indexOf(substr, offset);
+            result = offset = str.indexOf(substr, offset);
             if (offset > 0 && str.charAt(offset - 1) == escapeCharacter) {
                 // We found a match, but it is disqualified, as the match is prefixed by an escape character.
                 offset++;
@@ -183,6 +152,35 @@ public class StringScanner {
             }
         }
 
-        return offset;
+        return result;
+    }
+
+    /**
+     * Find the next <i>substr</i> is our string.
+     *
+     * @param substr Substring to search for.
+     * @return Offset of substring (0-based offset) or -1 if substring not found.
+     */
+    public int find(String substr) {
+        if (consumed()) {
+            return -1;
+        }
+
+        int index = findSubstring(str, substr, offset + 1, escapeCharacter);
+
+        // If the substring is not found -- set the offset to the end of the string and return -1
+        // to indicate the substring is not found.
+        offset = index == -1 ? str.length() - 1 : index;
+
+        return index;
+    }
+
+    /**
+     * Provide indication if this finder has been fully consumed. See the class description for more details.
+     *
+     * @return {@code true} if scanner is consumed, {@code false} if not.
+     */
+    public boolean consumed() {
+        return offset + 1 == str.length();
     }
 }

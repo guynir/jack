@@ -29,29 +29,25 @@ public class StringFragmentator {
     // Fragmentator
 
     /**
-     * A token prefix, marks a beginning of a token; e.g., <i>${</i>.
-     */
-    private final String tokenPrefix;
-
-    /**
-     * A token suffix, marks a ending of a token; e.g., <i>}</i>.
-     */
-    private final String tokenSuffix;
-
-    /**
      * Default token prefix.
      */
     private static final String DEFAULT_TOKEN_PREFIX = "${";
-
     /**
      * Default toke suffix.
      */
     private static final String DEFAULT_TONE_SUFFIX = "}";
-
     /**
      * A singleton of a default parser, which will probably be used a lot.
      */
     private static final StringFragmentator DEFAULT_PARSER = new StringFragmentator();
+    /**
+     * A token prefix, marks a beginning of a token; e.g., <i>${</i>.
+     */
+    private final String tokenPrefix;
+    /**
+     * A token suffix, marks a ending of a token; e.g., <i>}</i>.
+     */
+    private final String tokenSuffix;
 
     /**
      * Class constructor. Initialize a parser using default token prefix suffix, e.g., <i>${.....}</i>.

@@ -253,8 +253,8 @@ public class MutableStringKeyMap implements ReadOnlyMap<String> {
      *
      * @param key          Key identifying the object.
      * @param expectedType Actual exception type (e.g., {@code java.lang.Integer}, {@code java.lang.Float}, ...).
+     * @param <N>          Generic type of numeric object (e.g., {@code lava.lang.Integer}, {@code lava.lang.Long}, ...).
      * @return Object as a number.
-     * @param <N> Generic type of numeric object (e.g., {@code lava.lang.Integer}, {@code lava.lang.Long}, ...).
      * @throws IllegalArgumentException If <i>key</i> does not exist.
      * @throws TypeMismatchException    If the type could not be converted to {@code Number}.
      * @throws MissingKeyException      If <i>key</i> does not exist and no <i>fallback</i> is provided.
@@ -276,8 +276,8 @@ public class MutableStringKeyMap implements ReadOnlyMap<String> {
      * @param key          Key identifying the object.
      * @param expectedType Actual exception type (e.g., : {@code java.lang.Integer}, {@code java.lang.Float}, ...).
      * @param fallback     Optional fallback value to use. A non-{@code null} value indicates valid fallback.
+     * @param <N>          Generic type of numeric object (e.g., {@code lava.lang.Integer}, {@code lava.lang.Long}, ...).
      * @return Object as a number.
-     * @param <N> Generic type of numeric object (e.g., {@code lava.lang.Integer}, {@code lava.lang.Long}, ...).
      * @throws IllegalArgumentException If <i>key</i> does not exist.
      * @throws TypeMismatchException    If the type could not be converted to {@code Number}.
      * @throws MissingKeyException      If <i>key</i> does not exist and no <i>fallback</i> is provided.

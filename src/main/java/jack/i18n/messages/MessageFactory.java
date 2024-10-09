@@ -2,7 +2,10 @@ package jack.i18n.messages;
 
 import jack.utils.Asserts;
 
+import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * <p>A message factory is a centric element in generating, compiling and rendering locale-based custom messages.
@@ -18,14 +21,17 @@ import java.util.Locale;
 public class MessageFactory {
 
     /**
-     * Locale to use when rendering messages.
-     */
-    private Locale locale;
-
-    /**
      * Default locale to use when non-other specified.
      */
     public static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
+    /**
+     * A cache of {@code NumberFormat} accessible by locale.
+     */
+    private final Map<Locale, NumberFormat> numberFormatCache = new ConcurrentHashMap<>();
+    /**
+     * Locale to use when rendering messages.
+     */
+    private Locale locale;
 
     /**
      * Class constructor.
@@ -60,5 +66,18 @@ public class MessageFactory {
      */
     public void setLocale(Locale locale) throws IllegalArgumentException {
         this.locale = locale;
+    }
+
+    /**
+     * @return A {@code NumberFormat}-er based on current factory's locale.
+     */
+    public NumberFormat getNumberFormat() {
+        NumberFormat numberFormat = numberFormatCache.get(locale);
+        if (numberFormat == null) {
+            numberFormat = NumberFormat.getInstance(locale);
+            numberFormatCache.put(locale, numberFormat);
+        }
+
+        return numberFormat;
     }
 }

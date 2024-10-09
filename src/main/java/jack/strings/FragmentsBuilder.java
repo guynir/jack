@@ -15,24 +15,29 @@ import java.util.List;
 public class FragmentsBuilder {
 
     /**
+     * Length of token's prefix.
+     */
+    private final int lengthOfTokenPrefix;
+    /**
+     * Length of token's suffix.
+     */
+    private final int lengthOfTokenSuffix;
+    /**
+     * List of parsed parts accumulated.
+     */
+    private final List<Fragment> tokens = new LinkedList<>();
+    /**
      * Next offset to append a part.
      */
     private int offset;
 
     /**
-     * Length of token's prefix.
+     * Class constructor.
      */
-    private final int lengthOfTokenPrefix;
-
-    /**
-     * Length of token's suffix.
-     */
-    private final int lengthOfTokenSuffix;
-
-    /**
-     * List of parsed parts accumulated.
-     */
-    private final List<Fragment> tokens = new LinkedList<>();
+    private FragmentsBuilder(int lengthOfTokenPrefix, int lengthOfTokenSuffix) {
+        this.lengthOfTokenPrefix = lengthOfTokenPrefix;
+        this.lengthOfTokenSuffix = lengthOfTokenSuffix;
+    }
 
     /**
      * Creates a new builder configured based on the default tokenizer.
@@ -53,14 +58,6 @@ public class FragmentsBuilder {
     public static FragmentsBuilder newBuilder(StringFragmentator tokenizer) {
         Asserts.notNull(tokenizer, "Text tokenizer cannot be null.");
         return new FragmentsBuilder(tokenizer.getTokenPrefix().length(), tokenizer.getTokenSuffix().length());
-    }
-
-    /**
-     * Class constructor.
-     */
-    private FragmentsBuilder(int lengthOfTokenPrefix, int lengthOfTokenSuffix) {
-        this.lengthOfTokenPrefix = lengthOfTokenPrefix;
-        this.lengthOfTokenSuffix = lengthOfTokenSuffix;
     }
 
     /**
