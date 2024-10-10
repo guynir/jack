@@ -1,4 +1,6 @@
-package jack.i18n.messages;
+package jack.i18n.messages.formatters;
+
+import jack.i18n.messages.MessageException;
 
 /**
  * <p>This exception indicates a failure related to {@link Formatter#format(java.util.Locale, java.time.ZoneId, Object)}

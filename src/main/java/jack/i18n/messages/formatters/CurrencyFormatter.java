@@ -1,4 +1,4 @@
-package jack.i18n.messages;
+package jack.i18n.messages.formatters;
 
 import java.text.NumberFormat;
 import java.time.ZoneId;

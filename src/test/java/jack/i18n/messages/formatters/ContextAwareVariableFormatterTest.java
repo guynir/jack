@@ -1,4 +1,4 @@
-package jack.i18n.messages;
+package jack.i18n.messages.formatters;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

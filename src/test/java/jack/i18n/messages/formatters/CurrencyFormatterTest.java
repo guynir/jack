@@ -1,4 +1,4 @@
-package jack.i18n.messages;
+package jack.i18n.messages.formatters;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

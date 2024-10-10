@@ -1,8 +1,8 @@
-package jack.i18n.messages;
+package jack.i18n.messages.formatters;
 
 import java.util.Map;
 
-import static jack.i18n.messages.FormatterHelper.parseValue;
+import static jack.i18n.messages.formatters.FormatterHelper.parseValue;
 
 /**
  * <p>A common parent for all decimal-based formatter factories (such as {@code DecimalFormatterFactory},

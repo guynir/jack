@@ -1,4 +1,4 @@
-package jack.i18n.messages;
+package jack.i18n.messages.formatters;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
