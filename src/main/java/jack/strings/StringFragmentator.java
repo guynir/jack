@@ -86,8 +86,10 @@ public class StringFragmentator {
      *
      * @param text Text to parse.
      * @return List of <i>parsed parts</i> representing the text.
+     * @throws IllegalArgumentException If <i>text</i> is {@code null}.
+     * @throws StringFragmentsException If text contains a placeholder opening (prefix) with a closing suffix.
      */
-    public Fragments parsePattern(String text) throws IllegalArgumentException {
+    public Fragments parsePattern(String text) throws IllegalArgumentException, StringFragmentsException {
         Asserts.notNull(text, "Text cannot be null.");
         List<Fragment> fragments = new LinkedList<>();
 

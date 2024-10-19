@@ -9,8 +9,8 @@ package jack.i18n.messages.formatters;
 public class DecimalFormatterFactory extends AbstractDecimalFamilyFactory<DecimalFormatter> {
 
     @Override
-    protected DecimalFormatter createFormatterInternal(Integer decimalPlaces) throws FormatErrorException {
-        return new DecimalFormatter(decimalPlaces);
+    protected DecimalFormatter createFormatterInternal(int decimalPlaces, int decimalPadding, boolean rounding) {
+        return new DecimalFormatter(decimalPlaces, decimalPadding, rounding);
     }
 
 }

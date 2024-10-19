@@ -37,7 +37,13 @@ public class RestrictedPropertiesValuesValidator {
                 .collect(Collectors.toSet());
 
         if (!unknownValues.isEmpty()) {
-            throw new FormatErrorException("Unknown properties: " + String.join(", ", unknownValues));
+            String message;
+            if (unknownValues.size() == 1) {
+                message = "Unknown property: " + unknownValues.iterator().next();
+            } else {
+                message = "Unknown properties: " + String.join(", ", unknownValues);
+            }
+            throw new FormatErrorException(message);
         }
     }
 

@@ -114,8 +114,32 @@ public class FormatterHelper {
     public static <T> T parseValue(Map<String, String> props,
                                    String propertyName,
                                    Function<String, T> parser) throws FormatErrorException {
+        return parseValue(props, propertyName, parser, null);
+    }
+
+    /**
+     * <p>Attempt to extract a property and convert it into a target type.
+     * </p>
+     * <p>If the property does not exist, {@link Optional#empty()} is returned.
+     * </p>
+     * If a property does exist but contains either empty value (e.g.: empty or blank string) or has an invalid value
+     * (one which cannot be converted to a boolean form), an exception is thrown.
+     *
+     * @param props         Properties source.
+     * @param propertyName  Name of property.
+     * @param parser        A function that actually translates the value.
+     *                      The function can expect to receive a non-empty, lower-case representation of the property's
+     *                      value.
+     * @param fallbackValue Fallback value to use in case extracted property is {@code null} or does not exist.
+     * @return Result type or {@code null} if property is not defined.
+     * @throws FormatErrorException If property contains invalid value.
+     */
+    public static <T> T parseValue(Map<String, String> props,
+                                   String propertyName,
+                                   Function<String, T> parser,
+                                   T fallbackValue) throws FormatErrorException {
         String value = props.get(propertyName);
-        T result = null;
+        T result = fallbackValue;
         if (value != null) {
             value = value.trim().toLowerCase();
 

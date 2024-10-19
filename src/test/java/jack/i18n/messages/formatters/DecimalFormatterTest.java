@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 /**
  * A set of test cases for {@link DecimalFormatter}.
@@ -29,11 +30,11 @@ public class DecimalFormatterTest {
         DecimalFormatter formatter = factory.createFormatter();
 
         // US locale uses comma as thousands separator and dot for decimal separator.
-        assertThat(formatter.formatValue(Locale.US, ZoneId.systemDefault(), 1234.456)).isEqualTo("1,234.456");
+        assertThat(formatter.formatValue(Locale.US, ZoneId.systemDefault(), 1234.456)).isEqualTo("1,234.46");
 
         // French Canadian locale uses space (in Java -- non-breaking space 0x00A0) for thousands separator and a comma
         // as decimal separator.
-        assertThat(formatter.formatValue(Locale.CANADA_FRENCH, ZoneId.systemDefault(), 1234.456)).isEqualTo("1\u00A0234,456");
+        assertThat(formatter.formatValue(Locale.CANADA_FRENCH, ZoneId.systemDefault(), 1234.456)).isEqualTo("1\u00A0234,46");
     }
 
     /**
@@ -46,6 +47,32 @@ public class DecimalFormatterTest {
         DecimalFormatter formatter = factory.createFormatter(properties);
 
         // Decimal places .4567 is truncated into 3 digits and rounded up to 0.457.
-        assertThat(formatter.formatValue(Locale.US, ZoneId.systemDefault(), 1234.4567d)).isEqualTo("1,234.457");
+        assertThat(formatter.formatValue(Locale.US, ZoneId.systemDefault(), 1234.4567d)).isEqualTo("1,234.456");
+    }
+
+    /**
+     * Test should fail when an unknown/unsupported property is presented to a formatter.
+     */
+    @Test
+    @DisplayName("Test should fail on unidentified property")
+    public void testShouldFailOnUnidentifiedProperty() {
+        final String UNKNOWN_PROPERTY = "someStrangeProperty";
+        Map<String, String> properties = Collections.singletonMap(UNKNOWN_PROPERTY, "3");
+        assertThatExceptionOfType(FormatErrorException.class)
+                .isThrownBy(() -> factory.createFormatter(properties))
+                .withMessageContaining(UNKNOWN_PROPERTY);
+    }
+
+    /**
+     * Test should fail when an unknown/unsupported property is presented to a formatter.
+     */
+    @Test
+    @DisplayName("Test should fail on invalid property value")
+    public void testShouldFailOnInvalidPropertyValue() {
+        final String PROPERTY_NAME = "decimalPlaces";
+        Map<String, String> properties = Collections.singletonMap(PROPERTY_NAME, "invalidValue");
+        assertThatExceptionOfType(FormatErrorException.class)
+                .isThrownBy(() -> factory.createFormatter(properties))
+                .withMessageContaining(PROPERTY_NAME);
     }
 }

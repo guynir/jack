@@ -17,16 +17,39 @@ public abstract class AbstractDecimalFamilyFormatter extends Formatter {
      * Maximum number of decimals to allow. If this field is {@code null}, the formatter will not apply limitation
      * on decimal places.
      */
-    protected final Integer decimalPlaces;
+    protected final int decimalPlaces;
+
+    /**
+     * <p>Number of decimal places to pad. For example, given <i>decimalPadding=3</i> and the value <i>1.24</i>, the
+     * resulting text would be <i>1.240</i>.
+     * </p>
+     * This value should always be non-negative value and less than {@link #decimalPlaces}.
+     */
+    protected final int decimalPadding;
+
+    /**
+     * <p>Flag indicating if a truncated decimal value should be rounded or not. For example, if this property set to
+     * {@code true} with <i>decimalPoints = 2</i> and a given value of <i>1.239999</i>, after formatting, the resulting
+     * text is <i>1.24</i>.
+     * </p>
+     * If this flag is {@code false}, the value is simply truncated. E.g., with <i>decimalPoints = 2</i> and value
+     * of <i>1.239999</i> the resulting text is <i>1.23</i>.
+     */
+    protected final boolean rounding;
 
     /**
      * Properties required for formatting values.
      *
-     * @param decimalPlaces Maximum number of decimal places. May be {@code null} when not relevant.
+     * @param decimalPlaces  Maximum number of decimal places. Must be non-negative value.
+     * @param decimalPadding Number of decimal digits to pad. Must be non-negative value and not greater than
+     *                       <i>decimalPlaces</i>.
+     * @param rounding       {@code true} to round truncated decimal value, {@code false} if not.
      */
-    public AbstractDecimalFamilyFormatter(Integer decimalPlaces) {
+    public AbstractDecimalFamilyFormatter(int decimalPlaces, int decimalPadding, boolean rounding) {
         super(Float.class, Double.class, BigDecimal.class);
         this.decimalPlaces = decimalPlaces;
+        this.decimalPadding = decimalPadding;
+        this.rounding = rounding;
     }
 
     /**
@@ -36,10 +59,9 @@ public abstract class AbstractDecimalFamilyFormatter extends Formatter {
      * @return <i>formatter</i> argument.
      */
     protected NumberFormat configureFormatter(NumberFormat formatter) {
-        if (decimalPlaces != null) {
-            formatter.setMaximumFractionDigits(decimalPlaces);
-            formatter.setRoundingMode(RoundingMode.HALF_UP);
-        }
+        formatter.setMaximumFractionDigits(decimalPlaces);
+        formatter.setMinimumFractionDigits(decimalPadding);
+        formatter.setRoundingMode(rounding ? RoundingMode.HALF_UP : RoundingMode.DOWN);
         return formatter;
     }
 

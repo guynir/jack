@@ -9,7 +9,8 @@ package jack.i18n.messages.formatters;
 public class PercentageFormatterFactory extends AbstractDecimalFamilyFactory<PercentageFormatter> {
 
     @Override
-    protected PercentageFormatter createFormatterInternal(Integer decimalPlaces) throws FormatErrorException {
-        return new PercentageFormatter(decimalPlaces);
+    protected PercentageFormatter createFormatterInternal(int decimalPlaces, int decimalPadding, boolean rounding)
+            throws FormatErrorException {
+        return new PercentageFormatter(decimalPlaces, decimalPadding, rounding);
     }
 }

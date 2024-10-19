@@ -8,9 +8,8 @@ package jack.i18n.messages.formatters;
  */
 public class CurrencyFormatterFactory extends AbstractDecimalFamilyFactory<CurrencyFormatter> {
 
-    @Override
-    protected CurrencyFormatter createFormatterInternal(Integer decimalPlaces) throws FormatErrorException {
-        return new CurrencyFormatter(decimalPlaces);
+    protected CurrencyFormatter createFormatterInternal(int decimalPlaces, int decimalPadding, boolean rounding) {
+        return new CurrencyFormatter(decimalPlaces, decimalPadding, rounding);
     }
 
 }

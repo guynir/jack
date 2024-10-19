@@ -44,8 +44,10 @@ public class Asserts {
      * @throws IllegalReceiveException If either <i>str</i> is {@code null} or empty.
      */
     public static void notEmpty(String str, String message) throws IllegalReceiveException {
-        if (str == null || str.isBlank()) {
+        if (str == null || str.isEmpty()) {
             throw new IllegalArgumentException(message);
         }
     }
+
+
 }

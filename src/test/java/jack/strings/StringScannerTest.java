@@ -90,4 +90,44 @@ public class StringScannerTest {
 
     }
 
+    /**
+     * Test a simple splitting process.
+     */
+    @Test
+    @DisplayName("Test should split a string")
+    public void testShouldSplitString() {
+        String[] parts = StringScanner.split("A;B;C;D", ";");
+        assertThat(parts).isEqualTo(new String[]{"A", "B", "C", "D"});
+    }
+
+    /**
+     * Test that splitter skip an <i>escaped splitter</i> -- a splitter which is preceded by an escape character.
+     */
+    @Test
+    @DisplayName("Test should skip an escaped splitting string")
+    public void testShouldSkipEscapedSplitString() {
+        String[] parts = StringScanner.split("A\\;B;C;D", ";");
+        assertThat(parts).isEqualTo(new String[]{"A\\;B", "C", "D"});
+    }
+
+    /**
+     * Test that for an empty input string, returned value is an empty array.
+     */
+    @Test
+    @DisplayName("Test should return empty array")
+    public void testShouldReturnEmptyArray() {
+        String[] parts = StringScanner.split("", ";");
+        assertThat(parts).isEmpty();
+    }
+
+    /**
+     * Test that for a string with only splitting strings, the returned value is an array holding empty strings.
+     */
+    @Test
+    @DisplayName("Test should generate empty strings.")
+    public void testShouldGenerateEmptyStrings() {
+        String[] parts = StringScanner.split(";;", ";");
+        assertThat(parts).hasSize(3);
+    }
+
 }

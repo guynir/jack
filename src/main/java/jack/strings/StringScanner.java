@@ -2,6 +2,9 @@ package jack.strings;
 
 import jack.utils.Asserts;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * A string scanner is a utility that helps search a <i>substring</i> within another string.<p>
  * </p>
@@ -32,14 +35,17 @@ public class StringScanner {
      * Default escape character this implementation uses (unless alternative one is specified).
      */
     public static final char DEFAULT_ESCAPE_CHARACTER = '\\';
+
     /**
      * The string to scan.
      */
     private final String str;
+
     /**
      * Character to use as an <i>escape character</i> prefix.
      */
     private final char escapeCharacter;
+
     /**
      * Current offset of cursor (where to begin searching from).<p>
      * The search always begins one character after <i>offset</i>.<p>
@@ -120,6 +126,62 @@ public class StringScanner {
         Asserts.notNull(str, "Input string cannot be null.");
         Asserts.notNull(substr, "Substring cannot be null.");
         return search(str, substr, 0, DEFAULT_ESCAPE_CHARACTER);
+    }
+
+    /**
+     * Split a given string based on a given <i>splitter</i>.
+     * If a <i>splitter</i> is preceded by an escape character ({@link #DEFAULT_ESCAPE_CHARACTER}),
+     * the occurrence is skipped.
+     *
+     * @param str      String to split.
+     * @param splitter Expression to split by.
+     * @return Array of strings parsed from <i>str</i>. If <i>str</i> is empty, an empty array is returned.
+     * @throws IllegalArgumentException If either <>str</> or <i>splitter</i> are {@code null} or if <i>splitter</i>
+     *                                  is empty.
+     */
+    public static String[] split(String str, String splitter) throws IllegalArgumentException {
+        return split(str, splitter, DEFAULT_ESCAPE_CHARACTER);
+    }
+
+    /**
+     * <p>Split a given string based on a given <i>splitter</i>.
+     * If a <i>splitter</i> is preceded by an <i>escapeCharacter</i>, the occurrence is skipped.
+     * </p>
+     * <p>For example, given the string <i>Red;Green;Blue</i> and the splitter <i>;</i>, this call will generate the
+     * output: {@code { "Red", "Green", "Blue" }}.</p>
+     * If a splitter is preceded by an escape character, such as <i>/</i>, the splitting string is skipped.
+     * For example, <i>Red\;Green;Blue</i> with a splitter <i>;</i> and an escape character <i>\</i>, the produced
+     * output will be: {@code { "Red\;Green", "Blue" }}.
+     * </p>
+     *
+     * @param str             String to split.
+     * @param splitter        Expression to split by.
+     * @param escapeCharacter An escape character.
+     * @return Array of strings parsed from <i>str</i>. If <i>str</i> is empty, an empty array is returned.
+     * @throws IllegalArgumentException If either <>str</> or <i>splitter</i> are {@code null} or if <i>splitter</i>
+     *                                  is empty.
+     */
+    public static String[] split(String str, String splitter, char escapeCharacter) throws IllegalArgumentException {
+        Asserts.notNull(str, "Input string cannot be null.");
+        Asserts.notEmpty(splitter, "Splitter cannot be null or empty string.");
+
+        if (str.isEmpty()) {
+            return new String[0];
+        }
+
+        List<String> result = new LinkedList<>();
+        int offset = 0;
+        int nextOffset = 0;
+        while (nextOffset < str.length()) {
+            nextOffset = search(str, splitter, offset, escapeCharacter);
+            if (nextOffset == -1) {
+                nextOffset = str.length();
+            }
+            result.add(str.substring(offset, nextOffset));
+            offset = nextOffset + splitter.length();
+        }
+
+        return result.toArray(new String[0]);
     }
 
     /**

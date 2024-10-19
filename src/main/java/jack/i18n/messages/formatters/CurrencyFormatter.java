@@ -14,12 +14,15 @@ import java.util.Locale;
 public class CurrencyFormatter extends AbstractDecimalFamilyFormatter {
 
     /**
-     * Class constructor.
+     * Properties required for formatting values.
      *
-     * @param decimalPlaces Maximum number of decimal places. May be {@code null} when not relevant.
+     * @param decimalPlaces  Maximum number of decimal places. Must be non-negative value.
+     * @param decimalPadding Number of decimal digits to pad. Must be non-negative value and not greater than
+     *                       <i>decimalPlaces</i>.
+     * @param rounding       {@code true} to round truncated decimal value, {@code false} if not.
      */
-    public CurrencyFormatter(Integer decimalPlaces) {
-        super(decimalPlaces);
+    public CurrencyFormatter(int decimalPlaces, int decimalPadding, boolean rounding) {
+        super(decimalPlaces, decimalPadding, rounding);
     }
 
     @Override
