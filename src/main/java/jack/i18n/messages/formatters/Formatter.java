@@ -88,8 +88,9 @@ public abstract class Formatter {
     }
 
     /**
-     * The actual implementation that formats/renders the value into string format. All inputs are gurantieid to be
-     * non-{@code null} and <i>value</i> type is one of the supported types of this formatter.
+     * The actual implementation that formats/renders the value into string format.
+     * All inputs are guaranteeing to be non-{@code null} and <i>value</i> type is one of the supported types of this
+     * formatter.
      *
      * @param locale Locale to use for formatting/rendering.
      * @param zoneId Identifier of zone for formatting or adjusting values such as date and time.

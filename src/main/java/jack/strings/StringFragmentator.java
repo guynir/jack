@@ -9,15 +9,16 @@ import java.util.List;
  * Parse a given text into <i>fragments</i> where each fragment is either a simple text or a token (typically a
  * placeholder).<p>
  * </p>
- * A fragment is identified by a predefined prefix and suffix. By default, a token takes the form of <i>@{....}</i>,
- * however, the prefix and suffix (i.e.: <i>${</i> and <i>}</i>) can be defined during class construction.<p>
+ * A fragment is identified by a predefined prefix and suffix.
+ * By default, a token takes the form of <i>@{...}</i>; however, the prefix and suffix (i.e.: <i>${</i> and <i>}</i>)
+ * can be defined during class construction.<p>
  * </p>
  * As an example, the following text:
  * <pre>
- *     Hello Mr. ${name}, pleased to meet you.
+ *     Hello Mr. ${name} - pleased to meet you.
  * </pre>
  * is parsed as:
- * [TEXT: Hello Mr. ][TOKEN: name][TEXT:, pleased to meet you.]<p>
+ * [TEXT: Hello Mr. ][TOKEN: name][TEXT: - pleased to meet you.]<p>
  * </p>
  * Note: A token part is provided without its prefix and suffix (e.g., <i>${name}</i> is returned as <i>name</i>).
  *
@@ -50,7 +51,7 @@ public class StringFragmentator {
     private final String tokenSuffix;
 
     /**
-     * Class constructor. Initialize a parser using default token prefix suffix, e.g., <i>${.....}</i>.
+     * Class constructor. Initialize a parser using default token prefix suffix, e.g., <i>${...}</i>.
      */
     public StringFragmentator() {
         this(DEFAULT_TOKEN_PREFIX, DEFAULT_TONE_SUFFIX);
@@ -87,7 +88,7 @@ public class StringFragmentator {
      * @param text Text to parse.
      * @return List of <i>parsed parts</i> representing the text.
      * @throws IllegalArgumentException If <i>text</i> is {@code null}.
-     * @throws StringFragmentsException If text contains a placeholder opening (prefix) with a closing suffix.
+     * @throws StringFragmentsException If the text contains a placeholder opening (prefix) with a closing suffix.
      */
     public Fragments parsePattern(String text) throws IllegalArgumentException, StringFragmentsException {
         Asserts.notNull(text, "Text cannot be null.");

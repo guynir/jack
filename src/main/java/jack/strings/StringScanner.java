@@ -190,9 +190,10 @@ public class StringScanner {
      * </p>
      * <p>A <i>substr</i> which is prefixed by an escape character is skipped.
      * </p>
-     * <p>NOTE: This function does not validate input variable. If either arguments contains invalid values (e.g.:
-     * <i>str</i> or <i>substr</i> are {@code null} or <i>offset</i> is negative) - a platform runtime exception
-     * may be thrown (such as {@code IndexOutOfBoundsException} or {@code NullPointerException}).
+     * <p>NOTE: This function does not validate input variable.
+     * If either arguments contain invalid values (e.g.: <i>str</i> or <i>substr</i> are {@code null} or <i>offset</i>
+     * is negative) - a platform runtime exception may be thrown (such as {@code IndexOutOfBoundsException} or
+     * {@code NullPointerException}).
      * </p>
      * Caller must verify input values.
      *

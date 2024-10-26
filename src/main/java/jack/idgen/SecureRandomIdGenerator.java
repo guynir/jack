@@ -14,7 +14,8 @@ import java.util.Set;
  * <ul>
  * <li>
  * {@link SecureRandomIdGenerator#setSymbols(char[]) symbols} - Define table of characters that are used
- * for representing the generated identifier. Default configuration uses A-Z, a-z, 0-9 (62 characters).
+ * for representing the generated identifier.
+ * The Default configuration uses A-Z, a-z, 0-9 (62 characters).
  * </li>
  * <li>
  * {@link SecureRandomIdGenerator#setLength(int) length} - Define now many symbols should be the generated
@@ -141,7 +142,7 @@ public class SecureRandomIdGenerator implements StringIdGenerator {
      * Check if a given array of characters contains duplicates.
      *
      * @param chars Characters to examine.
-     * @return {@code true} if array contain duplicates, {@code false} if all characters are unique.
+     * @return {@code true} if the array contains duplicates, {@code false} if all characters are unique.
      */
     private static boolean hasDuplicates(char[] chars) {
         Set<Character> set = new HashSet<>(chars.length);

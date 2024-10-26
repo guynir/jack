@@ -74,7 +74,7 @@ public class FragmentsBuilder {
     /**
      * Add token block.
      *
-     * @param contents The contents of token; includes the token's prefix and suffix (e.g., <i>${....}</i>).
+     * @param contents The contents of the token; include the token's prefix and suffix (e.g., <i>${...}</i>).
      * @return This builder.
      * @throws IllegalArgumentException If <i>contents</i> are {@code null} or empty.
      */

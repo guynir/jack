@@ -2,7 +2,7 @@ package jack.idgen;
 
 /**
  * An {@code IdGenerator} produces a unique identifier for each call of {@link #generate()}. The actual type (e.g.:
- * {@code java.lang.String}, {@code java.lang.Long}, ....) and uniqueness assurance are details of the underlying
+ * {@code java.lang.String}, {@code java.lang.Long}, ...) and uniqueness assurance are details of the underlying
  * implementation.
  *
  * @author Guy Raz Nir

@@ -5,7 +5,7 @@ package jack.collections;
  * </p>
  * Each node has two core properties:
  * <ul>
- *     <li><i>key</i> - A key that represent it and is unique only among siblings (the same key can repeat in other
+ *     <li><i>key</i> - A key that represent it and is unique only among siblings (the same key can repeat in another
  *     group of children).</li>
  *     <li><i>data</i> - Each node carries a data object.</li>
  * </ul>

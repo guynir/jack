@@ -67,7 +67,7 @@ public class TokenDefinitionParser {
      * @param token Token expression to parse.
      * @return Token definition.
      * @throws IllegalArgumentException If <i>token</i> is {@code null}.
-     * @throws FormatErrorException     If either token does not contain variable name
+     * @throws FormatErrorException     If either token does not contain a variable name.
      */
     public TokenDefinition parse(String token) throws IllegalArgumentException, FormatErrorException {
         Asserts.notNull(token, "A token cannot be null.");

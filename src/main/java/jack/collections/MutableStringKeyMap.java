@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * <ul>
  *     <li>{@link IllegalArgumentException} - if the provided key is {@code null}.</li>
  *     <li>{@link MissingKeyException} - if the provided key does not exist.</li>
- *     <li>{@link TypeMismatchException} - if value could not be converted to target type.</li>
+ *     <li>{@link TypeMismatchException} - if value could not be converted to a target type.</li>
  * </ul>
  * <p>
  * Examples for errors:

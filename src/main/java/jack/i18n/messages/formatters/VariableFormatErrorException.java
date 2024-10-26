@@ -8,12 +8,12 @@ import java.util.Map;
  * <p>An exception thrown whenever a {@link ContextAwareVariableFormatter} formatter validates a candidate variable
  * for formatting.
  * </p>
- * <p>The validation can either be invoked manually (via {@link ContextAwareVariableFormatter#validateVariable(Map)} or
+ * <p>The validation can either be invoked manually (via {@link ContextAwareVariableFormatter#validateVariable(Map)}) or
  * when {@link ContextAwareVariableFormatter#format(Locale, ZoneId, Map)} is called.
  * </p>
  * The intention of this exception is to provide an addressable reason for the failure -- either the variable is not
  * defined in the given context or the type is not supported by the formatter.
- * In either case, the caller has the ability to address the problem.
+ * In either case, the caller can address the problem.
  *
  * @author Guy Raz Nir
  * @since 2024/10/09

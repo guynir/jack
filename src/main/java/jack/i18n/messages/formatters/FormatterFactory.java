@@ -21,7 +21,7 @@ public abstract class FormatterFactory<T extends Formatter> {
      * <p>Construct a new {@code Formatter} without and preliminary configuration. If the formatter does require
      * configuration than {@link IllegalArgumentException} is thrown.
      * </p>
-     * This function is a shorthand for {@code createFactory(null)}.
+     * This function is shorthand for {@code createFactory(null)}.
      *
      * @return New {@code Formatter}.
      * @throws IllegalArgumentException If formatter requires properties.

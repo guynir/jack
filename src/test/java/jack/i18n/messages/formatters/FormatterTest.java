@@ -27,7 +27,7 @@ public class FormatterTest {
     }
 
     /**
-     * A dummy formatter class used for testing purposes only.
+     * A fake formatter class used for testing purposes only.
      */
     private static class DummyFormatter extends Formatter {
 

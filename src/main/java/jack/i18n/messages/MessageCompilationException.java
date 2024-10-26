@@ -1,7 +1,7 @@
 package jack.i18n.messages;
 
 /**
- * This exception instance is thrown by {@link Message#compile} whenever a message compilation fails.
+ * This exception instance is thrown by {@link MessageFactory#compile(String)} whenever a message compilation fails.
  *
  * @author Guy Raz Nir
  * @since 2024/09/30

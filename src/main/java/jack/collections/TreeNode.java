@@ -83,7 +83,7 @@ public class TreeNode<K, D> {
     /**
      * Fetch node given a path.
      *
-     * @param path Path (set of keys) to target node.
+     * @param path Path (set of keys) to the target node.
      * @return Node matching given <i>path</i> or {@code null} if no such node exists.
      */
     @SafeVarargs
